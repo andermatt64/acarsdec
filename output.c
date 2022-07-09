@@ -252,12 +252,8 @@ static int buildjson(acarsmsg_t * msg, int chn, struct timeval tv)
 		snprintf(convert_tmp, sizeof(convert_tmp), "%c", msg->bid);
 		cJSON_AddStringToObject(json_obj, "block_id", convert_tmp);
 
-		if(msg->ack == '!') {
-			cJSON_AddFalseToObject(json_obj, "ack");
-		} else {
-			snprintf(convert_tmp, sizeof(convert_tmp), "%c", msg->ack);
-			cJSON_AddStringToObject(json_obj, "ack", convert_tmp);
-		}
+		snprintf(convert_tmp, sizeof(convert_tmp), "%c", msg->ack);
+		cJSON_AddStringToObject(json_obj, "ack", convert_tmp);
 
 		cJSON_AddStringToObject(json_obj, "tail", msg->addr);
 		if(IS_DOWNLINK_BLK(msg->bid)) {
